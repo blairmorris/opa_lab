@@ -20,6 +20,21 @@ function createOpaMiddleware(opaAgentUri) {
 
         const decodedToken = jwt.decode(token)
 
+        // check if the user is the owner of the resource
+        const ownerResponse = await client.post(
+            '/v1/data/owner/allow',
+            {
+              input: {
+                subject: decodedToken,
+                resource: request.params,
+              }
+            }
+        );
+        // if user is the owner, allow and continue (skip role check)
+        if (ownerResponse.data?.result) {
+            await next();
+            return;
+        }
         // query OPA api server
         const response = await client.post(
           '/v1/data/permission/allow',

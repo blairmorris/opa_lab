@@ -16,6 +16,14 @@ app.post('/orders', hasPermission('create', 'order'), (req, res) => {
     res.json({ message: `you can create order` })
 })
 
+// check if the request is allowed to read dataset where the owner is the user
+app.get('/datasets/:id',
+    hasPermission('', ''),
+    (req, res) => {
+        res.json({ message: `you can read dataset with id ${req.params.id}` })
+    }
+)
+
 // start server
 app.listen(port, () => {
     console.log(`OPA NodeJs is listening at http://localhost:${port}`)
