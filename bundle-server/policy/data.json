@@ -16,5 +16,23 @@
                 "object": "order"
             }
         ]
-    }
+    },
+    "datasets": [
+        {
+            "owner": "admin",
+            "id": "1"
+        },
+        {
+            "owner": "user",
+            "id": "2"
+        },
+        {
+            "owner": "user",
+            "id": "3"
+        },
+        {
+            "owner": "user2",
+            "id": "4"
+        }
+    ]
 }
